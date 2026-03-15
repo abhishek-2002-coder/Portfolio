@@ -21,7 +21,7 @@ app.add_middleware(
 )
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-GEMINI_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={GEMINI_API_KEY}"
+GEMINI_URL = f"https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key={GEMINI_API_KEY}"
 
 class Message(BaseModel):
     role: str
@@ -57,7 +57,7 @@ async def chat(request: ChatRequest):
                 headers={"Content-Type": "application/json"},
                 json={
                     "system_instruction": {
-                        "parts": {"text": request.system}
+                        "parts": [{"text": request.system}]
                     },
                     "contents": contents,
                     "generationConfig": {
