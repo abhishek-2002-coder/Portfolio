@@ -11,17 +11,17 @@ load_dotenv()
 
 app = FastAPI()
 
-# Enable CORS for local development
+# Enable CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Adjust this to your portfolio domain in production
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
-ANTHROPIC_URL = "https://api.anthropic.com/v1/messages"
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={GEMINI_API_KEY}"
 
 class Message(BaseModel):
     role: str
@@ -33,43 +33,56 @@ class ChatRequest(BaseModel):
 
 @app.get("/")
 async def root():
-    return {"message": "Abhi's Portfolio API is live! ✨"}
+    return {"message": "Abhi's Portfolio API (Gemini Edition) is live! ✨"}
 
 @app.post("/chat")
 async def chat(request: ChatRequest):
-    if not ANTHROPIC_API_KEY:
-        raise HTTPException(status_code=500, detail="Anthropic API key not configured")
+    if not GEMINI_API_KEY:
+        raise HTTPException(status_code=500, detail="Gemini API key not configured")
 
-    # Claude specifically needs messages to start with 'user'
-    # and alternate between 'user' and 'assistant'
-    formatted_messages = []
+    # Format messages for Gemini API
+    # Gemini uses 'user' and 'model' (Anthropic used 'assistant')
+    contents = []
     for msg in request.messages:
-        formatted_messages.append({"role": msg.role, "content": msg.content})
+        role = "user" if msg.role == "user" else "model"
+        contents.append({
+            "role": role,
+            "parts": [{"text": msg.content}]
+        })
 
     async with httpx.AsyncClient() as client:
         try:
             response = await client.post(
-                ANTHROPIC_URL,
-                headers={
-                    "Content-Type": "application/json",
-                    "x-api-key": ANTHROPIC_API_KEY,
-                    "anthropic-version": "2023-06-01"
-                },
+                GEMINI_URL,
+                headers={"Content-Type": "application/json"},
                 json={
-                    "model": "claude-3-5-sonnet-20240620",
-                    "max_tokens": 1024,
-                    "system": request.system,
-                    "messages": formatted_messages
+                    "system_instruction": {
+                        "parts": {"text": request.system}
+                    },
+                    "contents": contents,
+                    "generationConfig": {
+                        "maxOutputTokens": 1024,
+                    }
                 },
                 timeout=30.0
             )
 
             if response.status_code != 200:
                 error_detail = response.text
-                print(f"Anthropic API Error: {error_detail}")
+                print(f"Gemini API Error: {error_detail}")
                 raise HTTPException(status_code=response.status_code, detail=error_detail)
 
-            return response.json()
+            # Format Gemini response to match what the frontend expects
+            # (Anthropic format: data.content[0].text)
+            gemini_data = response.json()
+            try:
+                bot_text = gemini_data['candidates'][0]['content']['parts'][0]['text']
+                return {
+                    "content": [{"text": bot_text}]
+                }
+            except (KeyError, IndexError) as e:
+                print(f"Parsing Error: {str(e)} - Data: {gemini_data}")
+                raise HTTPException(status_code=500, detail="Error parsing response from Gemini")
 
         except Exception as e:
             print(f"Backend Crash: {str(e)}")
