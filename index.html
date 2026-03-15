@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Abhishek R — Full-Stack & AI Developer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "on-background": "#e2e2e2","secondary": "#c4c6cc","inverse-primary": "#5d5f5f","on-tertiary": "#1b1b1f","error-container": "#93000a","on-surface-variant": "#c6c6c6","tertiary-fixed": "#5e5e62","tertiary-container": "#919095","on-tertiary-container": "#000000","on-secondary-container": "#e0e2e8","primary-fixed-dim": "#454747","on-secondary-fixed-variant": "#383c40","on-secondary": "#181c20","on-tertiary-fixed-variant": "#e4e1e7","secondary-fixed-dim": "#a8abb0","inverse-surface": "#e2e2e2","surface-container-low": "#1b1b1b","on-error": "#690005","surface-tint": "#c6c6c7","secondary-container": "#44474b","surface-variant": "#353535","error": "#ffb4ab","surface-bright": "#393939","surface": "#131313","on-primary-container": "#000000","on-tertiary-fixed": "#ffffff","on-primary": "#1a1c1c","on-primary-fixed": "#ffffff","tertiary-fixed-dim": "#47464b","surface-dim": "#131313","primary-container": "#d4d4d4","surface-container-lowest": "#0e0e0e","surface-container": "#1f1f1f","primary": "#ffffff","surface-container-highest": "#353535","on-secondary-fixed": "#181c20","on-primary-fixed-variant": "#e2e2e2","tertiary": "#e4e1e7","primary-fixed": "#5d5f5f","surface-container-high": "#2a2a2a","on-surface": "#e2e2e2","secondary-fixed": "#c4c6cc","outline-variant": "#474747","outline": "#919191","on-error-container": "#ffdad6","background": "#131313","inverse-on-surface": "#303030"
+        },
+        fontFamily: { "headline": ["Inter","sans-serif"],"body": ["Inter","sans-serif"],"label": ["Inter","sans-serif"] },
+        borderRadius: { "DEFAULT": "0.125rem","md": "0.375rem","lg": "0.5rem","xl": "0.75rem","2xl": "1rem","full": "9999px" },
+      },
+    },
+  }
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { background-color: #131313; color: #e2e2e2; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  html { scroll-behavior: smooth; }
+  ::-webkit-scrollbar { width: 3px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 2px; }
+  ::selection { background: #ffffff; color: #131313; }
+  .hero-heading { letter-spacing: -0.04em; line-height: 0.95; }
+  .tight { letter-spacing: -0.025em; }
+  .technic { letter-spacing: 0.1em; }
+  .grid-pattern { background-image: radial-gradient(circle at 1.5px 1.5px, rgba(255,255,255,0.04) 1px, transparent 0); background-size: 40px 40px; }
+  .hero-glow { background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(255,255,255,0.04) 0%, transparent 70%); }
+  .glass { background: rgba(19,19,19,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; font-size: 20px; vertical-align: middle; }
+  .timeline-line { width: 1px; background: linear-gradient(to bottom, transparent, #2a2a2a 15%, #2a2a2a 85%, transparent); }
+  @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1);box-shadow:0 0 0 0 rgba(74,222,128,0.4);} 50%{opacity:0.7;transform:scale(0.9);box-shadow:0 0 0 6px rgba(74,222,128,0);} }
+  .pulse-dot { animation: pulse-dot 2.4s ease-in-out infinite; }
+  @keyframes fade-up { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+  .fade-up { opacity:0; animation: fade-up 0.7s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .delay-1{animation-delay:0.1s;} .delay-2{animation-delay:0.22s;} .delay-3{animation-delay:0.36s;} .delay-4{animation-delay:0.5s;} .delay-5{animation-delay:0.65s;}
+  .reveal { opacity:1; transform:none; }
+  .reveal.animate { opacity:0; transform:translateY(20px); transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.animate.visible { opacity:1; transform:none; }
+  .reveal-delay-1{transition-delay:0.06s;} .reveal-delay-2{transition-delay:0.13s;} .reveal-delay-3{transition-delay:0.2s;}
+  .card-hover { transition: background 0.25s, border-color 0.25s, transform 0.25s cubic-bezier(0.16,1,0.3,1); }
+  .card-hover:hover { transform: translateY(-2px); }
+  .skill-cell { transition: background 0.2s; }
+  .skill-cell:hover { background: #2a2a2a; }
+  .skill-cell:hover .skill-icon { color: #ffffff; }
+  .skill-cell:hover .skill-label { color: #ffffff; }
+  .skill-cell:hover .skill-border { opacity: 0.2; }
+  input:not(#chat-input), textarea { background: transparent !important; color: #e2e2e2 !important; outline: none !important; box-shadow: none !important; }
+  input:not(#chat-input):focus, textarea:focus { border-color: #ffffff !important; }
+  ::placeholder { color: #474747 !important; }
+  .nav-link.active { color: #ffffff; }
+  #mobile-menu { display: none; }
+  #mobile-menu.open { display: flex; }
+  .section-divider { border-top: 1px solid rgba(71,71,71,0.15); }
+  .stat-num { font-variant-numeric: tabular-nums; letter-spacing: -0.04em; }
+
+  /* ── CHATBOT ── */
+  #chat-widget {
+    position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+    display: flex; flex-direction: column; align-items: flex-end; gap: 16px;
+  }
+
+  #chat-window {
+    width: 380px;
+    max-height: 580px;
+    background: rgba(15, 16, 20, 0.9);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.02);
+    transform-origin: bottom right;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: scale(0.92) translateY(20px);
+    opacity: 0;
+    pointer-events: none;
+  }
+  #chat-window.open {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  #chat-header {
+    padding: 18px 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .chat-header-left { display: flex; align-items: center; gap: 12px; }
+  .chat-avatar {
+    width: 36px; height: 36px; border-radius: 12px;
+    background: linear-gradient(145deg, #1f1f23, #131316);
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .chat-name { font-size: 0.85rem; font-weight: 600; color: #ffffff; letter-spacing: -0.01em; }
+  .chat-status { font-size: 0.65rem; color: #a1a1aa; display: flex; align-items: center; gap: 5px; margin-top: 1px; }
+  .chat-status-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 10px rgba(74,222,128,0.5); }
+  
+  #chat-close-btn {
+    width: 30px; height: 30px; border-radius: 8px;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+    color: #888; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s; font-size: 0.8rem;
+  }
+  #chat-close-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); color: #ffffff; }
+
+  #chat-messages {
+    flex: 1; overflow-y: auto; padding: 20px;
+    display: flex; flex-direction: column; gap: 14px;
+    scrollbar-width: none;
+  }
+  #chat-messages::-webkit-scrollbar { display: none; }
+
+  .msg { display: flex; gap: 10px; align-items: flex-end; max-width: 100%; }
+  .msg.user { flex-direction: row-reverse; }
+
+  .msg-avatar {
+    width: 26px; height: 26px; border-radius: 8px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; border: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 2px;
+  }
+  .msg-avatar.bot { background: rgba(255,255,255,0.05); }
+  .msg-avatar.user-av { background: #ffffff; color: #000; }
+
+  .msg-bubble {
+    padding: 10px 14px; border-radius: 14px;
+    font-size: 0.82rem; line-height: 1.6; max-width: 280px;
+    word-break: break-word; font-weight: 300;
+  }
+  .msg.bot .msg-bubble {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #e2e2e2; border-bottom-left-radius: 4px;
+  }
+  .msg.user .msg-bubble {
+    background: #ffffff; color: #000;
+    border-bottom-right-radius: 4px;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+
+  /* Typing indicator */
+  .typing-dots { display: flex; gap: 5px; align-items: center; padding: 6px 0; }
+  .typing-dots span {
+    width: 6px; height: 6px; border-radius: 50%; background: #444;
+    animation: typingBounce 1.4s infinite ease-in-out;
+  }
+  .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typingBounce { 0%,80%,100%{transform:translateY(0);opacity:0.3;} 40%{transform:translateY(-6px);opacity:1;background:#888;} }
+
+  /* Quick suggestions */
+  #chat-suggestions {
+    padding: 0 20px 18px;
+    display: flex; gap: 8px; flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+  .suggestion-chip {
+    font-size: 0.7rem; padding: 6px 12px; border-radius: 10px;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+    color: #a1a1aa; cursor: pointer; transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+    white-space: nowrap; font-weight: 400;
+  }
+  .suggestion-chip:hover { 
+    background: rgba(255,255,255,0.1); 
+    border-color: rgba(255,255,255,0.3); 
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  #chat-input-row {
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex; align-items: center; gap: 12px;
+    flex-shrink: 0;
+  }
+  #chat-input {
+    flex: 1; background: rgba(0,0,0,0.3) !important; 
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    border-radius: 12px; padding: 10px 16px;
+    font-size: 0.85rem; color: #ffffff !important;
+    outline: none !important; resize: none;
+    font-family: inherit; line-height: 1.5;
+    transition: all 0.2s;
+    box-shadow: none !important;
+  }
+  #chat-input:focus { border-color: rgba(255,255,255,0.3) !important; background: rgba(0,0,0,0.4) !important; }
+  #chat-input::placeholder { color: #52525b !important; }
+  
+  #chat-send {
+    width: 40px; height: 40px; border-radius: 12px;
+    background: #ffffff; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+    color: #000;
+  }
+  #chat-send:hover { transform: scale(1.08) translateY(-2px); box-shadow: 0 10px 20px rgba(255,255,255,0.2); }
+  #chat-send:active { transform: scale(0.95); }
+  #chat-send:disabled { background: rgba(255,255,255,0.05); color: #52525b; cursor: default; transform: none; box-shadow: none; }
+  #chat-send .material-symbols-outlined { font-size: 20px; }
+
+  /* FAB */
+  #chat-fab {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: #ffffff; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1);
+    transition: all 0.2s cubic-bezier(0.16,1,0.3,1);
+    color: #000; position: relative;
+    flex-shrink: 0;
+  }
+  #chat-fab:hover { transform: scale(1.08); box-shadow: 0 12px 40px rgba(0,0,0,0.6); }
+  #chat-fab .material-symbols-outlined { font-size: 22px; transition: transform 0.3s; }
+  #chat-fab.open-state .material-symbols-outlined { transform: rotate(0deg); }
+
+  /* Unread badge */
+  #chat-badge {
+    position: absolute; top: -2px; right: -2px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: #ef4444; border: 2px solid #131313;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.5rem; font-weight: 700; color: #fff;
+    transition: transform 0.2s;
+  }
+  #chat-badge.hidden { transform: scale(0); }
+
+  /* Code blocks in chat */
+  .msg-bubble pre {
+    background: rgba(0,0,0,0.4); border-radius: 10px; padding: 14px;
+    font-size: 0.75rem; overflow-x: auto; margin-top: 12px;
+    border: 1px solid rgba(255,255,255,0.08); font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    line-height: 1.6; white-space: pre-wrap; word-break: break-all;
+  }
+  .msg-bubble code { font-family: monospace; font-size: 0.78rem; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; }
+
+  @media (max-width: 480px) {
+    #chat-window { 
+      width: calc(100vw - 32px); 
+      max-height: calc(100vh - 120px);
+      right: 0; 
+    }
+    #chat-widget { right: 16px; bottom: 16px; }
+  }
+</style>
+</head>
+<body class="bg-background text-on-background">
+
+<!-- ── NAV ── -->
+<nav id="navbar" class="fixed top-0 w-full z-50 glass border-b border-outline-variant/10 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="#hero" class="text-primary font-bold tracking-tight text-lg">Abhishek<span class="text-outline">.</span></a>
+    <div class="hidden md:flex items-center gap-1">
+      <a href="#about"      class="nav-link text-on-surface-variant hover:text-primary transition-colors text-sm font-medium px-3 py-2">About</a>
+      <a href="#skills"     class="nav-link text-on-surface-variant hover:text-primary transition-colors text-sm font-medium px-3 py-2">Skills</a>
+      <a href="#projects"   class="nav-link text-on-surface-variant hover:text-primary transition-colors text-sm font-medium px-3 py-2">Work</a>
+      <a href="#experience" class="nav-link text-on-surface-variant hover:text-primary transition-colors text-sm font-medium px-3 py-2">Experience</a>
+      <a href="#contact"    class="nav-link text-on-surface-variant hover:text-primary transition-colors text-sm font-medium px-3 py-2">Contact</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="#contact" class="hidden md:inline-flex bg-primary text-on-primary px-4 py-1.5 rounded-md text-sm font-semibold hover:bg-primary-container transition-all">Hire me</a>
+      <button id="menu-btn" class="md:hidden text-on-surface-variant p-1" onclick="toggleMenu()">
+        <span class="material-symbols-outlined text-2xl" id="menu-icon">menu</span>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="md:hidden flex-col px-6 pb-5 gap-1 border-t border-outline-variant/10">
+    <a href="#about"      onclick="toggleMenu()" class="block py-3 text-sm font-medium text-on-surface-variant hover:text-primary transition-colors border-b border-outline-variant/10">About</a>
+    <a href="#skills"     onclick="toggleMenu()" class="block py-3 text-sm font-medium text-on-surface-variant hover:text-primary transition-colors border-b border-outline-variant/10">Skills</a>
+    <a href="#projects"   onclick="toggleMenu()" class="block py-3 text-sm font-medium text-on-surface-variant hover:text-primary transition-colors border-b border-outline-variant/10">Work</a>
+    <a href="#experience" onclick="toggleMenu()" class="block py-3 text-sm font-medium text-on-surface-variant hover:text-primary transition-colors border-b border-outline-variant/10">Experience</a>
+    <a href="#contact"    onclick="toggleMenu()" class="block py-3 text-sm font-medium text-on-surface-variant hover:text-primary transition-colors border-b border-outline-variant/10">Contact</a>
+    <a href="#contact"    onclick="toggleMenu()" class="mt-3 block text-center bg-primary text-on-primary px-4 py-2.5 rounded-md text-sm font-semibold">Hire me</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero" class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-16">
+  <div class="absolute inset-0 grid-pattern opacity-50 pointer-events-none"></div>
+  <div class="absolute inset-0 hero-glow pointer-events-none"></div>
+  <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-white/[0.02] rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+    <div class="fade-up delay-1 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container border border-outline-variant/20 mb-8">
+      <span class="w-2 h-2 rounded-full bg-green-400 pulse-dot"></span>
+      <span class="text-[11px] font-medium technic text-on-surface-variant uppercase">Available for opportunities</span>
+    </div>
+    <h1 class="fade-up delay-2 hero-heading text-[clamp(3rem,9vw,7rem)] font-bold text-primary mb-7 max-w-4xl mx-auto">
+      Building software<br/>& AI that matters.
+    </h1>
+    <p class="fade-up delay-3 text-on-surface-variant text-[clamp(1rem,2vw,1.2rem)] max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+      Full-stack developer & AI engineer based in Mysuru, India. I build fast, scalable products — from clean backend systems to pixel-perfect interfaces. Passionate about AI-powered applications and shipping things that actually matter.
+    </p>
+    <div class="fade-up delay-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+      <a href="#projects" class="w-full sm:w-auto px-7 py-3.5 bg-primary text-on-primary rounded-md font-semibold text-sm flex items-center justify-center gap-2 hover:bg-primary-container transition-all shadow-xl shadow-black/30">
+        View Work <span class="material-symbols-outlined text-base">arrow_forward</span>
+      </a>
+      <a href="#contact" class="w-full sm:w-auto px-7 py-3.5 bg-surface-container-highest text-on-surface rounded-md font-semibold text-sm border border-outline-variant/20 hover:bg-surface-variant transition-all">
+        Get in Touch
+      </a>
+    </div>
+    <div class="fade-up delay-5 mt-12 flex flex-wrap items-center justify-center gap-6 opacity-40">
+      <span class="text-[11px] font-mono technic">FLUTTER · REACT · FASTAPI · PYTHON</span>
+      <span class="w-1 h-1 rounded-full bg-outline"></span>
+      <span class="text-[11px] font-mono technic">MYSURU, INDIA</span>
+      <span class="w-1 h-1 rounded-full bg-outline"></span>
+      <span class="text-[11px] font-mono technic text-green-400">OPEN TO WORK</span>
+    </div>
+  </div>
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30">
+    <span class="text-[10px] uppercase technic font-medium text-on-surface-variant">Scroll</span>
+    <div class="w-px h-10 bg-gradient-to-b from-primary to-transparent"></div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about" class="section-divider py-28 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="reveal mb-16">
+      <span class="text-[10px] font-bold technic text-on-surface-variant uppercase block mb-3">01 / About</span>
+      <h2 class="text-[clamp(2.5rem,5vw,4rem)] font-bold text-primary tight leading-tight">The person behind<br/>the code.</h2>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+      <div class="lg:col-span-7 flex flex-col gap-10 reveal reveal-delay-1">
+        <div class="space-y-5">
+          <p class="text-on-surface text-lg leading-[1.85] font-light">I'm <strong class="font-semibold text-primary">Abhishek R</strong>, a full-stack developer and AI engineer currently pursuing my B.E. in Computer Science & Design at Mysore University School of Engineering (graduating 2027).</p>
+          <p class="text-on-surface-variant leading-[1.85] font-light">I build fast, scalable products that people love to use — from clean backend systems to pixel-perfect interfaces. Currently interning at <strong class="text-primary font-medium">Agamin Innovations</strong>, where I work across the full stack building real-world healthcare and AI-driven applications.</p>
+          <p class="text-on-surface-variant leading-[1.85] font-light">Passionate about AI-powered applications, open source, and shipping things that actually matter. I work with Flutter, React, FastAPI, and Python — and I'm always building something new.</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-2 opacity-60">
+          <div class="flex flex-col gap-1"><span class="text-[10px] technic text-on-surface-variant">01 / MOBILE</span><span class="text-xs font-medium text-primary">Flutter · Dart</span></div>
+          <div class="flex flex-col gap-1"><span class="text-[10px] technic text-on-surface-variant">02 / FRONTEND</span><span class="text-xs font-medium text-primary">React · HTML · CSS</span></div>
+          <div class="flex flex-col gap-1"><span class="text-[10px] technic text-on-surface-variant">03 / BACKEND</span><span class="text-xs font-medium text-primary">FastAPI · Node.js</span></div>
+          <div class="flex flex-col gap-1"><span class="text-[10px] technic text-on-surface-variant">04 / AI</span><span class="text-xs font-medium text-primary">OpenAI · HuggingFace</span></div>
+        </div>
+      </div>
+      <div class="lg:col-span-5 reveal reveal-delay-2">
+        <div class="grid grid-cols-2 gap-px bg-outline-variant/20 border border-outline-variant/20 rounded-xl overflow-hidden">
+          <div class="bg-surface-container p-7 card-hover"><div class="stat-num text-[2.6rem] font-bold text-primary leading-none mb-2">6<span class="text-outline text-2xl">mo</span></div><div class="text-[10px] technic text-on-surface-variant uppercase">Internship Exp.</div></div>
+          <div class="bg-surface-container p-7 card-hover"><div class="stat-num text-[2.6rem] font-bold text-primary leading-none mb-2">6<span class="text-outline text-2xl">+</span></div><div class="text-[10px] technic text-on-surface-variant uppercase">Projects Built</div></div>
+          <div class="bg-surface-container p-7 card-hover"><div class="stat-num text-[2.6rem] font-bold text-primary leading-none mb-2">3<span class="text-outline text-2xl">rd</span></div><div class="text-[10px] technic text-on-surface-variant uppercase">Year BE CSE</div></div>
+          <div class="bg-surface-container p-7 card-hover"><div class="stat-num text-[2.6rem] font-bold text-primary leading-none mb-2">2<span class="text-outline text-2xl">x</span></div><div class="text-[10px] technic text-on-surface-variant uppercase">Stack: Full + AI</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ── -->
+<section id="skills" class="section-divider py-28 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="reveal mb-16">
+      <span class="text-[10px] font-bold technic text-on-surface-variant uppercase block mb-3">02 / Skills</span>
+      <h2 class="text-[clamp(2.5rem,5vw,4rem)] font-bold text-primary tight">Tools of the trade.</h2>
+      <p class="text-on-surface-variant mt-3 text-lg font-light max-w-xl">A pragmatic stack built across mobile, web, backend, and AI.</p>
+    </div>
+    <div class="reveal reveal-delay-1 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-px bg-outline-variant/20 border border-outline-variant/20 rounded-xl overflow-hidden mb-10">
+      <div class="skill-cell group relative bg-surface-container aspect-square flex flex-col items-center justify-center p-4 sm:p-6 cursor-default"><span class="material-symbols-outlined skill-icon text-3xl text-on-surface-variant mb-3 transition-colors">phone_android</span><span class="skill-label text-on-surface-variant text-[10px] font-medium technic transition-colors text-center">Flutter</span><div class="skill-border absolute inset-0 border border-primary opacity-0 transition-opacity pointer-events-none"></div></div>
+      <div class="skill-cell group relative bg-surface-container aspect-square flex flex-col items-center justify-center p-4 sm:p-6 cursor-default"><span class="material-symbols-outlined skill-icon text-3xl text-on-surface-variant mb-3 transition-colors">deployed_code</span><span class="skill-label text-on-surface-variant text-[10px] font-medium technic transition-colors text-center">React</span><div class="skill-border absolute inset-0 border border-primary opacity-0 transition-opacity pointer-events-none"></div></div>
+      <div class="skill-cell group relative bg-surface-container aspect-square flex flex-col items-center justify-center p-4 sm:p-6 cursor-default"><span class="material-symbols-outlined skill-icon text-3xl text-on-surface-variant mb-3 transition-colors">terminal</span><span class="skill-label text-on-surface-variant text-[10px] font-medium technic transition-colors text-center">TypeScript</span><div class="skill-border absolute inset-0 border border-primary opacity-0 transition-opacity pointer-events-none"></div></div>
+      <div class="skill-cell group relative bg-surface-container aspect-square flex flex-col items-center justify-center p-4 sm:p-6 cursor-default"><span class="material-symbols-outlined skill-icon text-3xl text-on-surface-variant mb-3 transition-colors">code_off</span><span class="skill-label text-on-surface-variant text-[10px] font-medium technic transition-colors text-center">Python</span><div class="skill-border absolute inset-0 border border-primary opacity-0 transition-opacity pointer-events-none"></div></div>
+      <div class="skill-cell group relative bg-surface-container aspect-square flex flex-col items-center justify-center p-4 sm:p-6 cursor-default"><span class="material-symbols-outlined skill-icon text-3xl text-on-surface-variant mb-3 transition-colors">bolt</span><span class="skill-label text-on-surface-variant text-[10px] font-medium technic transition-colors text-center">FastAPI</span><div class="skill-border absolute inset-0 border border-primary opacity-0 transition-opacity pointer-events-none"></div></div>
+      <div class="skill-cell group relative bg-surface-container aspect-square flex flex-col items-center justify-center p-4 sm:p-6 cursor-default"><span class="material-symbols-outlined skill-icon text-3xl text-on-surface-variant mb-3 transition-colors">javascript</span><span class="skill-label text-on-surface-variant text-[10px] font-medium technic transition-colors text-center">Node.js</span><div class="skill-border absolute inset-0 border border-primary opacity-0 transition-opacity pointer-events-none"></div></div>
+      <div class="skill-cell group relative bg-surface-container aspect-square flex flex-col items-center justify-center p-4 sm:p-6 cursor-default"><span class="material-symbols-outlined skill-icon text-3xl text-on-surface-variant mb-3 transition-colors">database</span><span class="skill-label text-on-surface-variant text-[10px] font-medium technic transition-colors text-center">PostgreSQL</span><div class="skill-border absolute inset-0 border border-primary opacity-0 transition-opacity pointer-events-none"></div></div>
+      <div class="skill-cell group relative bg-surface-container aspect-square flex flex-col items-center justify-center p-4 sm:p-6 cursor-default"><span class="material-symbols-outlined skill-icon text-3xl text-on-surface-variant mb-3 transition-colors">storage</span><span class="skill-label text-on-surface-variant text-[10px] font-medium technic transition-colors text-center">MySQL</span><div class="skill-border absolute inset-0 border border-primary opacity-0 transition-opacity pointer-events-none"></div></div>
+      <div class="skill-cell group relative bg-surface-container aspect-square flex flex-col items-center justify-center p-4 sm:p-6 cursor-default"><span class="material-symbols-outlined skill-icon text-3xl text-on-surface-variant mb-3 transition-colors">package_2</span><span class="skill-label text-on-surface-variant text-[10px] font-medium technic transition-colors text-center">Docker</span><div class="skill-border absolute inset-0 border border-primary opacity-0 transition-opacity pointer-events-none"></div></div>
+      <div class="skill-cell group relative bg-surface-container aspect-square flex flex-col items-center justify-center p-4 sm:p-6 cursor-default"><span class="material-symbols-outlined skill-icon text-3xl text-on-surface-variant mb-3 transition-colors">auto_awesome</span><span class="skill-label text-on-surface-variant text-[10px] font-medium technic transition-colors text-center">OpenAI API</span><div class="skill-border absolute inset-0 border border-primary opacity-0 transition-opacity pointer-events-none"></div></div>
+      <div class="skill-cell group relative bg-surface-container aspect-square flex flex-col items-center justify-center p-4 sm:p-6 cursor-default"><span class="material-symbols-outlined skill-icon text-3xl text-on-surface-variant mb-3 transition-colors">hub</span><span class="skill-label text-on-surface-variant text-[10px] font-medium technic transition-colors text-center">HuggingFace</span><div class="skill-border absolute inset-0 border border-primary opacity-0 transition-opacity pointer-events-none"></div></div>
+      <div class="skill-cell group relative bg-surface-container aspect-square flex flex-col items-center justify-center p-4 sm:p-6 cursor-default"><span class="material-symbols-outlined skill-icon text-3xl text-on-surface-variant mb-3 transition-colors">fork_right</span><span class="skill-label text-on-surface-variant text-[10px] font-medium technic transition-colors text-center">Git / GitHub</span><div class="skill-border absolute inset-0 border border-primary opacity-0 transition-opacity pointer-events-none"></div></div>
+    </div>
+    <div class="reveal reveal-delay-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="p-7 bg-surface-container-low border-l-2 border-primary rounded-r-lg card-hover"><h3 class="text-sm font-semibold text-primary mb-3 technic uppercase">Mobile & Web</h3><p class="text-on-surface-variant text-sm leading-relaxed font-light">Building cross-platform apps with Flutter for mobile and web, and crafting responsive web experiences with React. Strong focus on clean UI, smooth animations, and real-world API integration.</p></div>
+      <div class="p-7 bg-surface-container-low border-l-2 border-outline-variant rounded-r-lg card-hover"><h3 class="text-sm font-semibold text-primary mb-3 technic uppercase">AI & Backend</h3><p class="text-on-surface-variant text-sm leading-relaxed font-light">Building intelligent backends with FastAPI and Python, integrating OpenAI and HuggingFace models. Experienced with PostgreSQL, MongoDB, REST APIs, and government-scale data integrations like ABDM.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROJECTS ── -->
+<section id="projects" class="section-divider py-28 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="reveal flex flex-col sm:flex-row justify-between items-end gap-4 mb-16">
+      <div>
+        <span class="text-[10px] font-bold technic text-on-surface-variant uppercase block mb-3">03 / Work</span>
+        <h2 class="text-[clamp(2.5rem,5vw,4rem)] font-bold text-primary tight">Things I've built.</h2>
+        <p class="text-on-surface-variant mt-3 text-lg font-light">Real projects, real impact — all in active development.</p>
+      </div>
+      <span class="text-[10px] font-mono text-outline technic uppercase hidden sm:block self-end pb-2">2024 — 2025</span>
+    </div>
+    <div class="reveal reveal-delay-1 grid grid-cols-1 md:grid-cols-12 gap-px bg-outline-variant/20 border border-outline-variant/20 rounded-xl overflow-hidden">
+      <div class="md:col-span-8 bg-surface-container hover:bg-surface-container-high transition-colors cursor-default overflow-hidden relative group">
+        <div class="p-8 flex flex-col h-full min-h-[280px]">
+          <div class="flex justify-between items-start mb-6 z-10 relative flex-wrap gap-3">
+            <div>
+              <div class="flex items-center gap-2 mb-2 flex-wrap"><span class="text-[10px] bg-surface-container-highest px-2 py-0.5 rounded border border-outline-variant/20 technic uppercase font-medium">2025 · Web App</span><span class="text-[10px] bg-yellow-400/10 text-yellow-300 px-2 py-0.5 rounded border border-yellow-400/20 technic uppercase font-medium">In Progress</span></div>
+              <h3 class="text-2xl font-bold text-primary tight">Voxlipi</h3>
+              <p class="text-on-surface-variant text-sm mt-1.5 max-w-sm font-light">Built the web app and system configuration screens with full API integration. Delivered responsive Flutter web interfaces and complex config flows for a production-grade platform at Agamin Innovations.</p>
+            </div>
+          </div>
+          <div class="flex gap-2 flex-wrap mt-auto mb-4 z-10 relative">
+            <span class="text-[10px] bg-surface-container-highest px-2 py-0.5 rounded border border-outline-variant/20 technic">Flutter</span>
+            <span class="text-[10px] bg-surface-container-highest px-2 py-0.5 rounded border border-outline-variant/20 technic">Dart</span>
+            <span class="text-[10px] bg-surface-container-highest px-2 py-0.5 rounded border border-outline-variant/20 technic">REST APIs</span>
+            <span class="text-[10px] bg-surface-container-highest px-2 py-0.5 rounded border border-outline-variant/20 technic">Web App</span>
+          </div>
+          <div class="absolute bottom-0 right-0 w-1/2 h-2/3 opacity-10 group-hover:opacity-20 transition-opacity pointer-events-none flex flex-col items-end justify-end p-6 gap-2">
+            <div class="w-full h-2 bg-white/20 rounded"></div><div class="w-4/5 h-2 bg-white/15 rounded"></div><div class="w-full h-2 bg-white/20 rounded"></div><div class="w-3/5 h-2 bg-white/10 rounded"></div>
+          </div>
+        </div>
+      </div>
+      <div class="md:col-span-4 bg-surface-container hover:bg-surface-container-high transition-colors cursor-default group p-7 flex flex-col justify-between">
+        <div>
+          <div class="w-9 h-9 rounded-lg bg-surface-container-highest border border-outline-variant/20 flex items-center justify-center mb-4"><span class="material-symbols-outlined text-on-surface-variant text-lg">account_tree</span></div>
+          <div class="flex items-center gap-2 mb-1 flex-wrap"><h4 class="text-base font-bold text-primary tight">AI Visualizer</h4><span class="text-[10px] bg-yellow-400/10 text-yellow-300 px-1.5 py-0.5 rounded border border-yellow-400/20 technic">In Progress</span></div>
+          <p class="text-xs text-on-surface-variant font-light leading-relaxed mt-1">VS Code extension that visualizes file architecture — how files connect and depend on each other, helping developers navigate complex codebases instantly.</p>
+        </div>
+        <div class="flex gap-1.5 flex-wrap mt-4"><span class="text-[10px] bg-surface-container-highest px-2 py-0.5 rounded border border-outline-variant/20 technic">TypeScript</span><span class="text-[10px] bg-surface-container-highest px-2 py-0.5 rounded border border-outline-variant/20 technic">JavaScript</span><span class="text-[10px] bg-surface-container-highest px-2 py-0.5 rounded border border-outline-variant/20 technic">VS Code API</span></div>
+      </div>
+      <div class="md:col-span-6 bg-surface-container hover:bg-surface-container-high transition-colors cursor-default group p-7">
+        <div class="w-9 h-9 rounded-lg bg-surface-container-highest border border-outline-variant/20 flex items-center justify-center mb-4"><span class="material-symbols-outlined text-on-surface-variant text-lg">medical_services</span></div>
+        <div class="flex items-center gap-2 mb-1 flex-wrap"><h4 class="text-base font-bold text-primary tight">Homecare Platform</h4><span class="text-[10px] bg-yellow-400/10 text-yellow-300 px-1.5 py-0.5 rounded border border-yellow-400/20 technic">In Progress</span></div>
+        <p class="text-sm text-on-surface-variant font-light leading-relaxed mt-1 mb-4">Healthcare service platform with two Flutter apps and a Python FastAPI backend. Complete API integration, patient management flows, and real-time data sync for home healthcare.</p>
+        <div class="flex gap-1.5 flex-wrap"><span class="text-[10px] bg-surface-container-highest px-2 py-0.5 rounded border border-outline-variant/20 technic">Flutter</span><span class="text-[10px] bg-surface-container-highest px-2 py-0.5 rounded border border-outline-variant/20 technic">FastAPI</span><span class="text-[10px] bg-surface-container-highest px-2 py-0.5 rounded border border-outline-variant/20 technic">Python</span><span class="text-[10px] bg-surface-container-highest px-2 py-0.5 rounded border border-outline-variant/20 technic">SQL</span></div>
+      </div>
+      <div class="md:col-span-6 bg-surface-container hover:bg-surface-container-high transition-colors cursor-default group p-7">
+        <div class="w-9 h-9 rounded-lg bg-surface-container-highest border border-outline-variant/20 flex items-center justify-center mb-4"><span class="material-symbols-outlined text-on-surface-variant text-lg">hub</span></div>
+        <div class="flex items-center gap-2 mb-1 flex-wrap"><h4 class="text-base font-bold text-primary tight">ABDM Integration</h4><span class="text-[10px] bg-yellow-400/10 text-yellow-300 px-1.5 py-0.5 rounded border border-yellow-400/20 technic">In Progress</span></div>
+        <p class="text-sm text-on-surface-variant font-light leading-relaxed mt-1 mb-4">API wrapper for India's Ayushman Bharat Digital Mission — fetching and sending patient data between a healthcare app and India's national health database securely.</p>
+        <div class="flex gap-1.5 flex-wrap"><span class="text-[10px] bg-surface-container-highest px-2 py-0.5 rounded border border-outline-variant/20 technic">Python</span><span class="text-[10px] bg-surface-container-highest px-2 py-0.5 rounded border border-outline-variant/20 technic">FastAPI</span><span class="text-[10px] bg-surface-container-highest px-2 py-0.5 rounded border border-outline-variant/20 technic">ABDM API</span></div>
+      </div>
+      <div class="md:col-span-8 bg-surface-container hover:bg-surface-container-high transition-colors cursor-default group p-7">
+        <div class="w-9 h-9 rounded-lg bg-surface-container-highest border border-outline-variant/20 flex items-center justify-center mb-4"><span class="material-symbols-outlined text-on-surface-variant text-lg">favorite</span></div>
+        <div class="flex items-center gap-2 mb-2 flex-wrap"><h4 class="text-lg font-bold text-primary tight">Unsaid Words — Memory Capsule</h4><span class="text-[10px] bg-yellow-400/10 text-yellow-300 px-1.5 py-0.5 rounded border border-yellow-400/20 technic">Personal</span></div>
+        <p class="text-sm text-on-surface-variant font-light leading-relaxed mt-1 mb-4 max-w-2xl">A mobile app to preserve emotions and memories. Schedule video messages, voice notes, or letters for loved ones at future dates. Features a personal memory vault and legacy messaging system. <em class="text-outline">"Words you never want left unsaid."</em></p>
+        <div class="flex gap-1.5 flex-wrap"><span class="text-[10px] bg-surface-container-highest px-2 py-0.5 rounded border border-outline-variant/20 technic">Flutter</span><span class="text-[10px] bg-surface-container-highest px-2 py-0.5 rounded border border-outline-variant/20 technic">FastAPI</span><span class="text-[10px] bg-surface-container-highest px-2 py-0.5 rounded border border-outline-variant/20 technic">AWS</span></div>
+      </div>
+      <div class="md:col-span-4 bg-surface-container hover:bg-surface-container-high transition-colors cursor-default group p-7 flex flex-col justify-between">
+        <div>
+          <div class="w-9 h-9 rounded-lg bg-surface-container-highest border border-outline-variant/20 flex items-center justify-center mb-4"><span class="material-symbols-outlined text-on-surface-variant text-lg">settings</span></div>
+          <h4 class="text-base font-bold text-primary tight mb-1">CRM Configuration</h4>
+          <p class="text-xs text-on-surface-variant font-light leading-relaxed mt-1">Internal CRM configuration and customization at Agamin Innovations — workflows, data structures, and integrations to support business operations.</p>
+        </div>
+        <div class="flex gap-1.5 flex-wrap mt-4"><span class="text-[10px] bg-surface-container-highest px-2 py-0.5 rounded border border-outline-variant/20 technic">CRM</span><span class="text-[10px] bg-surface-container-highest px-2 py-0.5 rounded border border-outline-variant/20 technic">Integration</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ── -->
+<section id="experience" class="section-divider py-28 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="reveal mb-16">
+      <span class="text-[10px] font-bold technic text-on-surface-variant uppercase block mb-3">04 / Experience</span>
+      <h2 class="text-[clamp(2.5rem,5vw,4rem)] font-bold text-primary tight leading-tight">Where I've worked<br/>& studied.</h2>
+      <p class="text-on-surface-variant mt-3 text-lg font-light max-w-xl">Building real-world experience alongside my degree.</p>
+    </div>
+    <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div class="hidden lg:block lg:col-span-1"><div class="sticky top-24 flex justify-center"><div class="timeline-line" style="height:500px;"></div></div></div>
+      <div class="lg:col-span-11 space-y-16">
+        <div class="reveal flex flex-col lg:flex-row gap-8 lg:gap-14">
+          <div class="lg:w-52 flex-shrink-0">
+            <span class="text-[10px] font-bold technic text-on-surface-variant uppercase">Aug 2025 — Present</span>
+            <h3 class="text-xl font-bold text-primary mt-1.5">Full-Stack Developer</h3>
+            <p class="text-on-surface-variant text-sm mt-0.5">Agamin Innovations</p>
+            <p class="text-outline text-xs mt-0.5">Internship · Mysuru</p>
+          </div>
+          <div class="flex-1">
+            <div class="p-7 bg-surface-container rounded-xl border border-outline-variant/10 hover:border-outline-variant/25 transition-all">
+              <p class="text-on-surface leading-[1.85] font-light">Working across the full stack on healthcare and AI-driven applications. Building Flutter mobile & web apps, Python FastAPI backends, integrating government health APIs (ABDM), and contributing to CRM configuration and platform tooling.</p>
+              <div class="mt-5 flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 bg-surface-container-high rounded text-[10px] font-bold technic text-on-surface-variant">Flutter</span>
+                <span class="px-2.5 py-1 bg-surface-container-high rounded text-[10px] font-bold technic text-on-surface-variant">FastAPI</span>
+                <span class="px-2.5 py-1 bg-surface-container-high rounded text-[10px] font-bold technic text-on-surface-variant">Python</span>
+                <span class="px-2.5 py-1 bg-surface-container-high rounded text-[10px] font-bold technic text-on-surface-variant">React</span>
+                <span class="px-2.5 py-1 bg-surface-container-high rounded text-[10px] font-bold technic text-on-surface-variant">SQL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal flex flex-col lg:flex-row gap-8 lg:gap-14">
+          <div class="lg:w-52 flex-shrink-0">
+            <span class="text-[10px] font-bold technic text-on-surface-variant uppercase">2022 — 2027</span>
+            <h3 class="text-xl font-bold text-primary mt-1.5">B.E. Computer Science</h3>
+            <p class="text-on-surface-variant text-sm mt-0.5">Mysore University School of Engineering</p>
+            <p class="text-outline text-xs mt-0.5">6th Semester · CS & Design</p>
+          </div>
+          <div class="flex-1">
+            <div class="p-7 bg-surface-container-lowest rounded-xl border border-dashed border-outline-variant/20">
+              <p class="text-on-surface-variant leading-[1.85] font-light">Pursuing B.E. in Computer Science & Design. Balancing academics with real-world internship experience, building projects across mobile, web, and AI. Hands-on experience in software engineering, algorithms, and system design.</p>
+              <div class="mt-5 flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 bg-surface-container rounded text-[10px] font-bold technic text-on-surface-variant">CS & Design</span>
+                <span class="px-2.5 py-1 bg-surface-container rounded text-[10px] font-bold technic text-on-surface-variant">Graduating 2027</span>
+                <span class="px-2.5 py-1 bg-surface-container rounded text-[10px] font-bold technic text-on-surface-variant">Mysuru, India</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal mt-20 pt-16 border-t border-outline-variant/10 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div><span class="text-[10px] font-bold text-on-surface-variant technic uppercase">Internship</span><div class="text-4xl font-bold text-primary mt-2 stat-num tight">6mo+</div></div>
+      <div><span class="text-[10px] font-bold text-on-surface-variant technic uppercase">Projects Built</span><div class="text-4xl font-bold text-primary mt-2 stat-num tight">6+</div></div>
+      <div><span class="text-[10px] font-bold text-on-surface-variant technic uppercase">Tech Stacks</span><div class="text-4xl font-bold text-primary mt-2 stat-num tight">3+</div></div>
+      <div><span class="text-[10px] font-bold text-on-surface-variant technic uppercase">Commitment</span><div class="text-4xl font-bold text-primary mt-2 stat-num tight">100%</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact" class="section-divider py-28 px-6">
+  <div class="max-w-4xl mx-auto">
+    <div class="reveal mb-14 text-center">
+      <span class="text-[10px] font-bold technic text-on-surface-variant uppercase block mb-3">05 / Contact</span>
+      <h2 class="text-[clamp(2.5rem,5vw,4rem)] font-bold text-primary tight">Let's build together.</h2>
+      <p class="text-on-surface-variant mt-3 text-lg font-light max-w-lg mx-auto">Open to internships, freelance projects, and collaborations. Let's make something great.</p>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+      <div class="lg:col-span-5 flex flex-col justify-center reveal">
+        <div class="space-y-4 mb-10">
+          <p class="text-on-surface-variant leading-[1.85] text-sm font-light">I'm a 3rd year CS student actively building real products. If you're looking for a motivated developer who ships — let's talk.</p>
+          <a href="/cdn-cgi/l/email-protection#e382818b8a91828ed5dad7d2a3848e828a8fcd808c8e" class="inline-flex items-center gap-2 text-primary font-medium border-b border-primary/20 hover:border-primary pb-0.5 transition-colors text-sm"><span class="__cf_email__" data-cfemail="e584878d8c978488d3dcd1d4a58288848c89cb868a88">[email&#160;protected]</span> <span class="material-symbols-outlined text-base">north_east</span></a>
+        </div>
+        <div class="space-y-2">
+          <a href="/cdn-cgi/l/email-protection#7415161c1d061519424d4045341319151d185a171b19" class="flex items-center gap-3 p-3.5 rounded-lg border border-outline-variant/15 hover:border-outline-variant/30 hover:bg-surface-container transition-all group">
+            <div class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-surface-variant text-base">alternate_email</span></div>
+            <div class="flex-1 min-w-0"><div class="text-xs font-medium text-primary">Email</div><div class="text-[11px] text-outline font-mono truncate"><span class="__cf_email__" data-cfemail="ccadaea4a5beada1faf5f8fd8caba1ada5a0e2afa3a1">[email&#160;protected]</span></div></div>
+            <span class="material-symbols-outlined text-outline text-sm group-hover:text-primary transition-colors">chevron_right</span>
+          </a>
+          <a href="https://github.com/abhishek-2002-coder" target="_blank" class="flex items-center gap-3 p-3.5 rounded-lg border border-outline-variant/15 hover:border-outline-variant/30 hover:bg-surface-container transition-all group">
+            <div class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-surface-variant text-base">code</span></div>
+            <div class="flex-1 min-w-0"><div class="text-xs font-medium text-primary">GitHub</div><div class="text-[11px] text-outline font-mono truncate">github.com/abhishek-2002-coder</div></div>
+            <span class="material-symbols-outlined text-outline text-sm group-hover:text-primary transition-colors">chevron_right</span>
+          </a>
+          <a href="https://www.linkedin.com/in/abhishek-r-0841b4316" target="_blank" class="flex items-center gap-3 p-3.5 rounded-lg border border-outline-variant/15 hover:border-outline-variant/30 hover:bg-surface-container transition-all group">
+            <div class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-surface-variant text-base">work</span></div>
+            <div class="flex-1 min-w-0"><div class="text-xs font-medium text-primary">LinkedIn</div><div class="text-[11px] text-outline font-mono truncate">linkedin.com/in/abhishek-r-0841b4316</div></div>
+            <span class="material-symbols-outlined text-outline text-sm group-hover:text-primary transition-colors">chevron_right</span>
+          </a>
+        </div>
+      </div>
+      <div class="lg:col-span-7 reveal reveal-delay-1">
+        <div class="bg-surface-container-low p-8 md:p-10 rounded-xl relative overflow-hidden border border-outline-variant/10">
+          <div class="absolute -top-20 -right-20 w-56 h-56 bg-primary/3 rounded-full blur-[80px] pointer-events-none"></div>
+          <form class="space-y-8 relative z-10" onsubmit="handleSubmit(event)">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div class="group"><label class="block text-[10px] font-bold technic text-on-surface-variant uppercase mb-2 group-focus-within:text-primary transition-colors">Full Name</label><input type="text" placeholder="Your name" class="w-full bg-transparent border-0 border-b border-outline-variant/30 px-0 py-2.5 text-sm text-on-surface focus:border-primary transition-all duration-300 focus:ring-0"/></div>
+              <div class="group"><label class="block text-[10px] font-bold technic text-on-surface-variant uppercase mb-2 group-focus-within:text-primary transition-colors">Email</label><input type="email" placeholder="you@company.com" class="w-full bg-transparent border-0 border-b border-outline-variant/30 px-0 py-2.5 text-sm text-on-surface focus:border-primary transition-all duration-300 focus:ring-0"/></div>
+            </div>
+            <div class="group"><label class="block text-[10px] font-bold technic text-on-surface-variant uppercase mb-2 group-focus-within:text-primary transition-colors">Subject</label><input type="text" placeholder="Project · Internship · Collaboration" class="w-full bg-transparent border-0 border-b border-outline-variant/30 px-0 py-2.5 text-sm text-on-surface focus:border-primary transition-all duration-300 focus:ring-0"/></div>
+            <div class="group"><label class="block text-[10px] font-bold technic text-on-surface-variant uppercase mb-2 group-focus-within:text-primary transition-colors">Message</label><textarea rows="4" placeholder="Tell me what you're building..." class="w-full bg-transparent border-0 border-b border-outline-variant/30 px-0 py-2.5 text-sm text-on-surface focus:border-primary transition-all duration-300 resize-none focus:ring-0"></textarea></div>
+            <button type="submit" id="submit-btn" class="w-full bg-primary text-on-primary py-3.5 rounded-md font-semibold text-sm flex items-center justify-center gap-2 hover:bg-primary-container transition-all hover:scale-[1.01] active:scale-[0.99]">
+              <span id="btn-text">Send Message</span>
+              <span class="material-symbols-outlined text-base" id="btn-icon">arrow_forward</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="section-divider bg-surface-container-lowest py-10 px-6">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+    <div class="flex flex-col items-center md:items-start gap-1">
+      <span class="text-primary font-bold text-base tight">Abhishek R</span>
+      <p class="text-on-surface-variant text-xs font-light">© 2025 · Full-Stack & AI Developer · Mysuru, India</p>
+    </div>
+    <div class="flex items-center gap-2 px-3.5 py-2 bg-surface-container-low rounded-lg border border-outline-variant/10">
+      <span class="text-[10px] font-mono text-outline technic uppercase">Status</span>
+      <span class="w-1.5 h-1.5 rounded-full bg-green-400 pulse-dot"></span>
+      <span class="text-xs text-on-surface-variant">Open to opportunities</span>
+    </div>
+    <div class="flex items-center gap-6">
+      <a href="https://github.com/abhishek-2002-coder" target="_blank" class="text-on-surface-variant hover:text-primary transition-colors text-sm font-medium flex items-center gap-1.5"><span class="material-symbols-outlined text-base">code</span> GitHub</a>
+      <a href="https://www.linkedin.com/in/abhishek-r-0841b4316" target="_blank" class="text-on-surface-variant hover:text-primary transition-colors text-sm font-medium flex items-center gap-1.5"><span class="material-symbols-outlined text-base">work</span> LinkedIn</a>
+      <a href="/cdn-cgi/l/email-protection#2e4f4c46475c4f4318171a1f6e49434f4742004d4143" class="text-on-surface-variant hover:text-primary transition-colors text-sm font-medium flex items-center gap-1.5"><span class="material-symbols-outlined text-base">mail</span> Email</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════
+     CHATBOT WIDGET
+══════════════════════════════════════ -->
+<div id="chat-widget">
+  <!-- Chat Window -->
+  <div id="chat-window">
+    <!-- Header -->
+    <div id="chat-header">
+        <div class="chat-avatar"><span class="material-symbols-outlined !text-[20px] text-white">smart_toy</span></div>
+        <div>
+          <div class="chat-name">Abhi's Assistant</div>
+          <div class="chat-status"><span class="chat-status-dot"></span> Online · Powered by AI</div>
+        </div>
+      <button id="chat-close-btn" onclick="toggleChat()">✕</button>
+    </div>
+
+    <!-- Messages -->
+    <div id="chat-messages"></div>
+
+    <!-- Suggestions -->
+    <div id="chat-suggestions">
+      <button class="suggestion-chip" onclick="sendSuggestion(this)">What's his stack?</button>
+      <button class="suggestion-chip" onclick="sendSuggestion(this)">Tell me about projects</button>
+      <button class="suggestion-chip" onclick="sendSuggestion(this)">Is he available?</button>
+      <button class="suggestion-chip" onclick="sendSuggestion(this)">How to contact?</button>
+    </div>
+
+    <!-- Input -->
+    <div id="chat-input-row">
+      <input id="chat-input" placeholder="Ask anything about Abhishek..." autocomplete="off" onkeydown="handleKey(event)"/>
+      <button id="chat-send" onclick="sendMessage()">
+        <span class="material-symbols-outlined">send</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- FAB -->
+  <button id="chat-fab" onclick="toggleChat()">
+    <span class="material-symbols-outlined" id="fab-icon">chat</span>
+    <div id="chat-badge">1</div>
+  </button>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── Nav & page ──
+function toggleMenu() {
+  const m = document.getElementById('mobile-menu');
+  const icon = document.getElementById('menu-icon');
+  m.classList.toggle('open');
+  icon.textContent = m.classList.contains('open') ? 'close' : 'menu';
+}
+// Reveal animation - add animate class to off-screen elements only
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0, rootMargin: '50px' });
+
+document.querySelectorAll('.reveal').forEach(el => {
+  const rect = el.getBoundingClientRect();
+  if (rect.top > window.innerHeight) {
+    // Only animate elements below the fold
+    el.classList.add('animate');
+    observer.observe(el);
+  }
+  // Elements already in view stay visible (opacity:1 default)
+});
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const active = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+sections.forEach(s => io.observe(s));
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').style.borderBottomColor = window.scrollY > 20 ? 'rgba(71,71,71,0.25)' : 'rgba(71,71,71,0.1)';
+}, { passive: true });
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  const txt = document.getElementById('btn-text');
+  const ico = document.getElementById('btn-icon');
+  btn.disabled = true; btn.style.opacity = '0.7';
+  txt.textContent = 'Sending...'; ico.textContent = 'hourglass_empty';
+  setTimeout(() => {
+    txt.textContent = 'Message Sent!'; ico.textContent = 'check_circle';
+    btn.style.background = '#1a1a1a'; btn.style.color = '#4ade80'; btn.style.border = '1px solid rgba(74,222,128,0.3)';
+    setTimeout(() => { btn.disabled = false; btn.style = ''; txt.textContent = 'Send Message'; ico.textContent = 'arrow_forward'; e.target.reset(); }, 3000);
+  }, 1200);
+}
+
+// ══════════════════════════════════
+// CHATBOT ENGINE
+// ══════════════════════════════════
+const SYSTEM_PROMPT = `You are a friendly and helpful AI assistant on Abhishek R's personal portfolio website. Your name is "Abhi's Assistant".
+
+Here is everything you know about Abhishek:
+
+PERSONAL:
+- Full name: Abhishek R
+- Role: Full-Stack Developer & AI Engineer
+- Location: Mysuru, India
+- Email: abhiram6941@gmail.com
+- GitHub: https://github.com/abhishek-2002-coder
+- LinkedIn: https://www.linkedin.com/in/abhishek-r-0841b4316
+- Status: Available for opportunities (internships, freelance, full-time)
+
+EDUCATION:
+- B.E. Computer Science & Design at Mysore University School of Engineering
+- Currently in 6th semester (3rd year)
+- Graduating in 2027
+
+EXPERIENCE:
+- Intern at Agamin Innovations (August 2025 - Present)
+- Role: Full-Stack Developer (Frontend + Backend)
+- 6+ months of internship experience
+
+SKILLS:
+Languages: Python, JavaScript, TypeScript, Dart, Java, C, C++, SQL
+Frontend: React, Flutter (Web + Mobile), HTML, CSS, Tailwind CSS
+Backend: FastAPI, Node.js, REST APIs
+Databases: PostgreSQL, MySQL, MongoDB
+DevOps: Docker, Git/GitHub
+AI/ML: OpenAI API, HuggingFace, TensorFlow/PyTorch
+Tools: Figma, Postman, VS Code
+
+PROJECTS:
+1. Voxlipi - Built Flutter web app and system config screens with API integration at Agamin Innovations (In Progress)
+2. AI Visualizer VS Extension - VS Code extension in TypeScript/JS that visualizes file architecture and dependencies (In Progress)
+3. Homecare Platform - Healthcare service with 2 Flutter apps + Python FastAPI backend + SQL (In Progress)
+4. ABDM Data Integration - API wrapper for India's national health database (Ayushman Bharat Digital Mission) (In Progress)
+5. Unsaid Words (Memory Capsule) - Flutter mobile app to schedule future messages/memories for loved ones. "Words you never want left unsaid." (Personal Project)
+6. CRM Configuration - Internal CRM setup at Agamin Innovations
+
+PERSONALITY & STYLE:
+- Passionate about AI and building things that matter
+- Commits at 2am sometimes (dedicated!)
+- Strong believer in clean code and great user experience
+- Open source enthusiast
+
+YOUR BEHAVIOR:
+- Be friendly, warm, and conversational — like a helpful friend
+- Keep answers concise but complete (2-4 sentences usually)
+- For portfolio questions, answer confidently using the above info
+- For general coding/tech questions, answer helpfully and clearly
+- If asked for contact, always share: abhiram6941@gmail.com
+- If asked if Abhishek is available/hireable: YES, enthusiastically confirm
+- Use occasional emojis to keep it friendly but not overdone
+- Don't make up information not listed above
+- For questions outside portfolio and tech, gently redirect`;
+
+// Points to your local FastAPI server
+const BACKEND_URL = 'http://localhost:8000/chat';
+let chatHistory = [];
+let isOpen = false;
+let isTyping = false;
+
+function toggleChat() {
+  isOpen = !isOpen;
+  const win = document.getElementById('chat-window');
+  const icon = document.getElementById('fab-icon');
+  const badge = document.getElementById('chat-badge');
+
+  win.classList.toggle('open', isOpen);
+  icon.textContent = isOpen ? 'close' : 'chat';
+  badge.classList.add('hidden');
+
+  if (isOpen && chatHistory.length === 0) {
+    setTimeout(() => {
+      addBotMessage("Hi! I'm Abhishek's digital concierge. 🚀 I can help you explore his **tech stack**, walk through his **recent projects**, or help you **get in touch**. What can I help you with?");
+    }, 300);
+  }
+
+  if (isOpen) {
+    setTimeout(() => document.getElementById('chat-input').focus(), 400);
+  }
+}
+
+function addBotMessage(text) {
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'msg bot';
+  div.innerHTML = `
+    <div class="msg-avatar bot"><span class="material-symbols-outlined !text-[14px]">smart_toy</span></div>
+    <div class="msg-bubble">${formatMessage(text)}</div>
+  `;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function addUserMessage(text) {
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'msg user';
+  div.innerHTML = `
+    <div class="msg-avatar user-av">👤</div>
+    <div class="msg-bubble">${escapeHtml(text)}</div>
+  `;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function showTyping() {
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'msg bot';
+  div.id = 'typing-indicator';
+  div.innerHTML = `
+    <div class="msg-avatar bot">🤖</div>
+    <div class="msg-bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>
+  `;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function hideTyping() {
+  const t = document.getElementById('typing-indicator');
+  if (t) t.remove();
+}
+
+function formatMessage(text) {
+  return escapeHtml(text)
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\n/g, '<br>');
+}
+
+function escapeHtml(text) {
+  return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function hideSuggestions() {
+  const s = document.getElementById('chat-suggestions');
+  if (s) s.style.display = 'none';
+}
+
+function sendSuggestion(btn) {
+  const text = btn.textContent;
+  hideSuggestions();
+  processMessage(text);
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+}
+
+function sendMessage() {
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text || isTyping) return;
+  input.value = '';
+  hideSuggestions();
+  processMessage(text);
+}
+
+async function processMessage(text) {
+  if (isTyping) return;
+  
+  const sendBtn = document.getElementById('chat-send');
+  addUserMessage(text);
+  chatHistory.push({ role: 'user', content: text });
+
+  isTyping = true;
+  sendBtn.disabled = true;
+  showTyping();
+
+  try {
+    const response = await fetch(BACKEND_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        system: SYSTEM_PROMPT,
+        messages: chatHistory
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Server Error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    hideTyping();
+
+    if (data.content && data.content[0]) {
+      const reply = data.content[0].text;
+      chatHistory.push({ role: 'assistant', content: reply });
+      addBotMessage(reply);
+    }
+  } catch (error) {
+    console.error('Chat Error:', error);
+    hideTyping();
+    addBotMessage("I'm having trouble connecting to my backend. Please make sure the FastAPI server is running.");
+  } finally {
+    isTyping = false;
+    sendBtn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>
