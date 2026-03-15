@@ -59,11 +59,21 @@
   #mobile-menu.open { display: flex; }
   .section-divider { border-top: 1px solid rgba(71,71,71,0.15); }
   .stat-num { font-variant-numeric: tabular-nums; letter-spacing: -0.04em; }
+  
+  /* Mobile pointer fixes */
+  a, button, [onclick] { cursor: pointer !important; touch-action: manipulation; }
+  
+  #mobile-menu { 
+    position: absolute; top: 100%; left: 0; width: 100%;
+    background: rgba(19,19,19,0.98); backdrop-filter: blur(20px);
+    z-index: 100; display: none;
+  }
+  #mobile-menu.open { display: flex; }
 
   /* ── CHATBOT ── */
   #chat-widget {
     position: fixed; bottom: 24px; right: 24px; z-index: 9999;
-    display: flex; flex-direction: column; align-items: flex-end; gap: 16px;
+    display: none; flex-direction: column; align-items: flex-end; gap: 16px;
   }
 
   #chat-window {
@@ -277,13 +287,13 @@
       </button>
     </div>
   </div>
-  <div id="mobile-menu" class="md:hidden flex-col px-6 pb-5 gap-1 border-t border-outline-variant/10">
-    <a href="#about"      onclick="toggleMenu()" class="block py-3 text-sm font-medium text-on-surface-variant hover:text-primary transition-colors border-b border-outline-variant/10">About</a>
-    <a href="#skills"     onclick="toggleMenu()" class="block py-3 text-sm font-medium text-on-surface-variant hover:text-primary transition-colors border-b border-outline-variant/10">Skills</a>
-    <a href="#projects"   onclick="toggleMenu()" class="block py-3 text-sm font-medium text-on-surface-variant hover:text-primary transition-colors border-b border-outline-variant/10">Work</a>
-    <a href="#experience" onclick="toggleMenu()" class="block py-3 text-sm font-medium text-on-surface-variant hover:text-primary transition-colors border-b border-outline-variant/10">Experience</a>
-    <a href="#contact"    onclick="toggleMenu()" class="block py-3 text-sm font-medium text-on-surface-variant hover:text-primary transition-colors border-b border-outline-variant/10">Contact</a>
-    <a href="#contact"    onclick="toggleMenu()" class="mt-3 block text-center bg-primary text-on-primary px-4 py-2.5 rounded-md text-sm font-semibold">Hire me</a>
+  <div id="mobile-menu" class="md:hidden flex-col px-6 pb-8 gap-1 border-t border-outline-variant/10 shadow-2xl">
+    <a href="#about"      onclick="toggleMenu()" class="block py-4 text-sm font-medium text-on-surface-variant hover:text-primary transition-colors border-b border-outline-variant/10">About</a>
+    <a href="#skills"     onclick="toggleMenu()" class="block py-4 text-sm font-medium text-on-surface-variant hover:text-primary transition-colors border-b border-outline-variant/10">Skills</a>
+    <a href="#projects"   onclick="toggleMenu()" class="block py-4 text-sm font-medium text-on-surface-variant hover:text-primary transition-colors border-b border-outline-variant/10">Work</a>
+    <a href="#experience" onclick="toggleMenu()" class="block py-4 text-sm font-medium text-on-surface-variant hover:text-primary transition-colors border-b border-outline-variant/10">Experience</a>
+    <a href="#contact"    onclick="toggleMenu()" class="block py-4 text-sm font-medium text-on-surface-variant hover:text-primary transition-colors border-b border-outline-variant/10">Contact</a>
+    <a href="#contact"    onclick="toggleMenu()" class="mt-5 block text-center bg-primary text-on-primary px-4 py-3 rounded-md text-sm font-semibold shadow-lg">Hire me</a>
   </div>
 </nav>
 
