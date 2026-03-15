@@ -31,6 +31,10 @@ class ChatRequest(BaseModel):
     messages: List[Message]
     system: str = "You are a helpful assistant."
 
+@app.get("/")
+async def root():
+    return {"message": "Abhi's Portfolio API is live! ✨"}
+
 @app.post("/chat")
 async def chat(request: ChatRequest):
     if not ANTHROPIC_API_KEY:
