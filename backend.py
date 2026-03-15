@@ -40,6 +40,12 @@ async def chat(request: ChatRequest):
     if not ANTHROPIC_API_KEY:
         raise HTTPException(status_code=500, detail="Anthropic API key not configured")
 
+    # Claude specifically needs messages to start with 'user'
+    # and alternate between 'user' and 'assistant'
+    formatted_messages = []
+    for msg in request.messages:
+        formatted_messages.append({"role": msg.role, "content": msg.content})
+
     async with httpx.AsyncClient() as client:
         try:
             response = await client.post(
@@ -53,19 +59,20 @@ async def chat(request: ChatRequest):
                     "model": "claude-3-5-sonnet-20240620",
                     "max_tokens": 1024,
                     "system": request.system,
-                    "messages": [m.model_dump() for m in request.messages]
+                    "messages": formatted_messages
                 },
                 timeout=30.0
             )
 
             if response.status_code != 200:
-                print(f"Error from Anthropic: {response.text}")
-                raise HTTPException(status_code=response.status_code, detail=response.text)
+                error_detail = response.text
+                print(f"Anthropic API Error: {error_detail}")
+                raise HTTPException(status_code=response.status_code, detail=error_detail)
 
             return response.json()
 
         except Exception as e:
-            print(f"Server Error: {str(e)}")
+            print(f"Backend Crash: {str(e)}")
             raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
