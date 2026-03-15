@@ -53,7 +53,7 @@ async def chat(request: ChatRequest):
                     "model": "claude-3-5-sonnet-20240620",
                     "max_tokens": 1024,
                     "system": request.system,
-                    "messages": [m.dict() for m in request.messages]
+                    "messages": [m.model_dump() for m in request.messages]
                 },
                 timeout=30.0
             )
